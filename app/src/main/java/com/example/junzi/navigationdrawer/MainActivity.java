@@ -9,10 +9,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class MainActivity extends AppCompatActivity{
     private DrawerLayout mDrawerLayout;
 
     @Override
@@ -33,11 +31,19 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
-                        // set item as selected to persist highlight
-                        menuItem.setChecked(true);
-                        // close drawer when item is tapped
-                        mDrawerLayout.closeDrawers();
+                        switch (menuItem.getItemId()) {
+                            case R.id.nav_fruits:
+                                Fragment fruitsFragment = new FruitsFragment();
+                                changeFragment(fruitsFragment);
+                                break;
+                            case R.id.nav_animals:
+                                Fragment animalsFragment = new AnimalsFragment();
+                                changeFragment(animalsFragment);
+                                break;
+                        }
 
+                        // close drawer when item is tapped
+                        mDrawerLayout.closeDrawer(GravityCompat.START);
 
                         return true;
                     }
@@ -50,29 +56,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             case android.R.id.home:
                 mDrawerLayout.openDrawer(GravityCompat.START);
                 return true;
-
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
-        int id = item.getItemId();
-
-        if (id == R.id.nav_fruits) {
-            Toast.makeText(this, "a", Toast.LENGTH_SHORT).show();
-            Fragment fruitsFragment = new FruitsFragment();
-            changeFragment(fruitsFragment);
-        } else if (id == R.id.nav_animals) {
-            Toast.makeText(this, "bf", Toast.LENGTH_SHORT).show();
-            Fragment animalsFragment = new AnimalsFragment();
-            changeFragment(animalsFragment);
-        }
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
     }
 
 

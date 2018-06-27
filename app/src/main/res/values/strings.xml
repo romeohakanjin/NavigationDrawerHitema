@@ -2,4 +2,7 @@
     <string name="app_name">NavigationDrawer</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="list_fruits">Liste des fruits</string>
+    <string name="welcome_header">Welcome and Bienvenue</string>
+    <string name="list_animals">Liste des animaux</string>
 </resources>
